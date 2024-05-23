@@ -1,7 +1,7 @@
 #include <iostream>
 #include <locale>
 
-#include "Tasks/TaskFactory.hpp"
+#include "TaskFactory.hpp"
 
 using namespace std;
 
