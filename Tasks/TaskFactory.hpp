@@ -1,16 +1,16 @@
 #pragma once
 
-#include <vector>
-#include <memory>
 #include <iostream>
+#include <memory>
+#include <vector>
 
 #include "TaskBase.hpp"
 
 class TaskFactory {
 public:
-    static TaskFactory& GetInstance();
+    static TaskFactory &GetInstance();
 
-    template<typename TaskClass>
+    template <typename TaskClass>
     void RegisterTask(const std::wstring &taskName)
     {
         tasks.push_back(std::make_unique<TaskClass>(taskName));
@@ -20,7 +20,7 @@ public:
 
 private:
     TaskFactory() = default;
-    TaskFactory(const TaskFactory&);
+    TaskFactory(const TaskFactory &);
 
     std::vector<std::unique_ptr<TaskBase>> tasks;
 };

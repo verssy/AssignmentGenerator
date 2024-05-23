@@ -1,6 +1,6 @@
 #include "TaskFactory.hpp"
 
-TaskFactory& TaskFactory::GetInstance()
+TaskFactory &TaskFactory::GetInstance()
 {
     static TaskFactory fac;
     return fac;

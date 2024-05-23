@@ -1,6 +1,6 @@
-#include "TaskFactory.hpp"
-#include "TaskBase.hpp"
 #include "Registrator.hpp"
+#include "TaskBase.hpp"
+#include "TaskFactory.hpp"
 
 class TaskMoney : public TaskBase {
 public:
@@ -12,10 +12,9 @@ public:
 
     std::wstring GetDescription() override
     {
-        return
-            L"Штирлиц подбросил монету 2 раза\n"
-            "Он не любит, когда выпадает менее двух орлов\n"
-            "Найдите вероятность того, что Штирлиц веселый";
+        return L"Штирлиц подбросил монету 2 раза\n"
+               "Он не любит, когда выпадает менее двух орлов\n"
+               "Найдите вероятность того, что Штирлиц веселый";
     }
 
     void Solve() override

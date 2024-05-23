@@ -4,7 +4,7 @@
 
 #include "TaskFactory.hpp"
 
-template<typename TaskClass>
+template <typename TaskClass>
 class Registrator {
 public:
     Registrator(const std::wstring &taskName)
