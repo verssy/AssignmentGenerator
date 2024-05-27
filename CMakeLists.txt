@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.16)
 
 project(AssGen VERSION 0.1 LANGUAGES CXX)
 
+add_compile_options(-g)
+
 add_subdirectory(Tasks)
 
 add_executable(Main main.cpp)
