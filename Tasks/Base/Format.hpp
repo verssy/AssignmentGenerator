@@ -29,7 +29,7 @@ std::wstring ToWstring<std::wstring>(std::wstring &&arg)
 }
 
 template <typename... Args>
-std::wstring Format(const std::wstring &format_str, Args &&... args)
+std::wstring Format(const std::wstring &format_str, Args &&...args)
 {
     std::wostringstream stream;
     std::vector<std::wstring> arguments = { ToWstring(std::forward<Args>(args))... };
