@@ -54,7 +54,7 @@ public:
 
     std::wstring GetAnswer() override
     {
-        return std::to_wstring(answer);
+        return ToWstring(answer);
     }
 
 private:
@@ -62,21 +62,21 @@ private:
     double probs[3];
     double answer;
 
-    std::wstring descriptionOneMachine =
+    const std::wstring descriptionOneMachine =
         L"Решите с использованием формул полной вероятности и Байеса (3 балла)\n"
         "Рабочий обслуживает 3 станка.\n"
         "Вероятность того, что в течение часа не потребует внимания рабочего:\n"
         "первый станок равна {}, второй – {}, третий – {}.\n"
         "Найти вероятность того, что в течение часа потребует внимания 1 станок.";
 
-    std::wstring descriptionTwoMachines =
+    const std::wstring descriptionTwoMachines =
         L"Решите с использованием формул полной вероятности и Байеса (3 балла)\n"
         "Рабочий обслуживает 3 станка.\n"
         "Вероятность того, что в течение часа не потребует внимания рабочего:\n"
         "первый станок равна {}, второй – {}, третий – {}.\n"
         "Найти вероятность того, что в течение часа потребуют внимания 2 станка.";
 
-    std::wstring descriptionThreeMachines =
+    const std::wstring descriptionThreeMachines =
         L"Решите с использованием формул полной вероятности и Байеса (3 балла)\n"
         "Рабочий обслуживает 3 станка.\n"
         "Вероятность того, что в течение часа не потребует внимания рабочего:\n"

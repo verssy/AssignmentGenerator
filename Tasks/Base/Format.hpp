@@ -29,27 +29,25 @@ std::wstring ToWstring<std::wstring>(std::wstring &&arg)
 }
 
 template <typename... Args>
-std::wstring Format(const std::wstring &format_str, Args &&...args)
+std::wstring Format(const std::wstring &formatStr, Args&&... args)
 {
     std::wostringstream stream;
     std::vector<std::wstring> arguments = { ToWstring(std::forward<Args>(args))... };
-    size_t arg_index = 0;
-    size_t pos = 0;
-    size_t prev_pos = 0;
-
-    while ((pos = format_str.find(L"{}", prev_pos)) != std::wstring::npos) {
-        stream << format_str.substr(prev_pos, pos - prev_pos);
-
-        if (arg_index < arguments.size()) {
-            stream << arguments[arg_index++];
-        } else {
-            throw std::runtime_error("Not enough arguments provided for the format string");
+    size_t argIndex = 0;
+    
+    try {
+        for (int64_t i = 0; i < formatStr.length(); i++) {
+            if (formatStr[i] == L'{' && formatStr[i + 1] == L'}') {
+                stream << arguments[argIndex++];
+                i++;
+            } else {
+                stream << formatStr[i];
+            }
         }
-
-        prev_pos = pos + 2;
+    } catch (std::out_of_range &error) {
+        std::cerr << "Bad format: Format() doesn't allow any chars but '}' after '{'" << std::endl;
+        return std::wstring{};
     }
-
-    stream << format_str.substr(prev_pos);
 
     return stream.str();
 }
