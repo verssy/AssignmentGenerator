@@ -29,12 +29,12 @@ std::wstring ToWstring<std::wstring>(std::wstring &&arg)
 }
 
 template <typename... Args>
-std::wstring Format(const std::wstring &formatStr, Args&&... args)
+std::wstring Format(const std::wstring &formatStr, Args &&...args)
 {
     std::wostringstream stream;
     std::vector<std::wstring> arguments = { ToWstring(std::forward<Args>(args))... };
     size_t argIndex = 0;
-    
+
     try {
         for (int64_t i = 0; i < formatStr.length(); i++) {
             if (formatStr[i] == L'{' && formatStr[i + 1] == L'}') {
