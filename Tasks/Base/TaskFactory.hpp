@@ -11,7 +11,7 @@ public:
     static TaskFactory &GetInstance();
 
     template <typename TaskClass>
-    void RegisterTask(const std::wstring &taskName)
+    void RegisterTask(const std::string &taskName)
     {
         tasks.push_back(std::make_unique<TaskClass>(taskName));
     }

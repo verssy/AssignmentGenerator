@@ -7,7 +7,7 @@
 template <typename TaskClass>
 class Registrator {
 public:
-    Registrator(const std::wstring &taskName)
+    Registrator(const std::string &taskName)
     {
         TaskFactory::GetInstance().RegisterTask<TaskClass>(taskName);
     }

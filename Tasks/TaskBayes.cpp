@@ -6,7 +6,7 @@
 
 class TaskBayes : public TaskBase {
 public:
-    TaskBayes(const std::wstring &taskName) : TaskBase(taskName)
+    TaskBayes(const std::string &taskName) : TaskBase(taskName)
     { }
 
     void Randomize() override
@@ -39,7 +39,7 @@ public:
         }
     }
 
-    std::wstring GetDescription() override
+    std::string GetDescription() override
     {
         switch (machinesCount) {
             default:
@@ -52,9 +52,9 @@ public:
         }
     }
 
-    std::wstring GetAnswer() override
+    std::string GetAnswer() override
     {
-        return ToWstring(answer);
+        return ToString(answer);
     }
 
 private:
@@ -62,26 +62,26 @@ private:
     double probs[3];
     double answer;
 
-    const std::wstring descriptionOneMachine =
-        L"Решите с использованием формул полной вероятности и Байеса (3 балла)\n"
+    const std::string descriptionOneMachine =
+        "Решите с использованием формул полной вероятности и Байеса (3 балла)\n"
         "Рабочий обслуживает 3 станка.\n"
         "Вероятность того, что в течение часа не потребует внимания рабочего:\n"
         "первый станок равна {}, второй – {}, третий – {}.\n"
         "Найти вероятность того, что в течение часа потребует внимания 1 станок.";
 
-    const std::wstring descriptionTwoMachines =
-        L"Решите с использованием формул полной вероятности и Байеса (3 балла)\n"
+    const std::string descriptionTwoMachines =
+        "Решите с использованием формул полной вероятности и Байеса (3 балла)\n"
         "Рабочий обслуживает 3 станка.\n"
         "Вероятность того, что в течение часа не потребует внимания рабочего:\n"
         "первый станок равна {}, второй – {}, третий – {}.\n"
         "Найти вероятность того, что в течение часа потребуют внимания 2 станка.";
 
-    const std::wstring descriptionThreeMachines =
-        L"Решите с использованием формул полной вероятности и Байеса (3 балла)\n"
+    const std::string descriptionThreeMachines =
+        "Решите с использованием формул полной вероятности и Байеса (3 балла)\n"
         "Рабочий обслуживает 3 станка.\n"
         "Вероятность того, что в течение часа не потребует внимания рабочего:\n"
         "первый станок равна {}, второй – {}, третий – {}.\n"
         "Найти вероятность того, что в течение часа потребуют внимания 3 станка.";
 };
 
-Registrator<TaskBayes> registrator(L"Задача о подбрасывании монетки");
+Registrator<TaskBayes> registrator("Задание на использование формулы Байеса");

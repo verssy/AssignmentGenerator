@@ -4,13 +4,13 @@
 
 class TaskBase {
 public:
-    TaskBase(const std::wstring &taskName);
+    TaskBase(const std::string &taskName);
 
     virtual void Randomize() = 0;
-    virtual std::wstring GetDescription() = 0;
+    virtual std::string GetDescription() = 0;
     virtual void Solve() = 0;
-    virtual std::wstring GetAnswer() = 0;
+    virtual std::string GetAnswer() = 0;
 
 protected:
-    std::wstring taskName;
+    std::string taskName;
 };

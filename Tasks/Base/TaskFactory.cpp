@@ -10,8 +10,8 @@ void TaskFactory::Print()
 {
     for (auto &task : tasks) {
         task->Randomize();
-        std::wcout << task->GetDescription() << std::endl;
+        std::cout << task->GetDescription() << std::endl;
         task->Solve();
-        std::wcout << task->GetAnswer() << std::endl;
+        std::cout << task->GetAnswer() << std::endl;
     }
 }

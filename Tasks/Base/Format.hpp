@@ -5,38 +5,38 @@
 #include <string>
 #include <vector>
 
-std::wstring ToWstring(const wchar_t *arg)
+std::string ToString(const char *arg)
 {
-    return std::wstring(arg);
+    return std::string(arg);
 }
 
-template <size_t WcharArrSize>
-std::wstring ToWstring(wchar_t (&arg)[WcharArrSize])
+template <size_t ArrSize>
+std::string ToString(char (&arg)[ArrSize])
 {
     return arg;
 }
 
 template <typename T>
-std::wstring ToWstring(T &&arg)
+std::string ToString(T &&arg)
 {
-    return std::to_wstring(arg);
+    return std::to_string(arg);
 }
 
 template <>
-std::wstring ToWstring<std::wstring>(std::wstring &&arg)
+std::string ToString<std::string>(std::string &&arg)
 {
     return arg;
 }
 
 template <typename... Args>
-std::wstring Format(const std::wstring &formatStr, Args &&...args)
+std::string Format(const std::string &formatStr, Args &&...args)
 {
-    std::wostringstream stream;
-    std::vector<std::wstring> arguments = { ToWstring(std::forward<Args>(args))... };
+    std::ostringstream stream;
+    std::vector<std::string> arguments = { ToString(std::forward<Args>(args))... };
     size_t argIndex = 0;
 
     try {
-        for (int64_t i = 0; i < formatStr.length(); i++) {
+        for (size_t i = 0; i < formatStr.length(); i++) {
             if (formatStr[i] == L'{' && formatStr[i + 1] == L'}') {
                 stream << arguments[argIndex++];
                 i++;
@@ -46,7 +46,7 @@ std::wstring Format(const std::wstring &formatStr, Args &&...args)
         }
     } catch (std::out_of_range &error) {
         std::cerr << "Bad format: Format() doesn't allow any chars but '}' after '{'" << std::endl;
-        return std::wstring{};
+        return std::string{};
     }
 
     return stream.str();

@@ -1,4 +1,4 @@
 #include "TaskBase.hpp"
 
-TaskBase::TaskBase(const std::wstring &taskName) : taskName(taskName)
+TaskBase::TaskBase(const std::string &taskName) : taskName(taskName)
 { }

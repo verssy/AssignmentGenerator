@@ -4,15 +4,15 @@
 
 class TaskMoney : public TaskBase {
 public:
-    TaskMoney(const std::wstring &taskName) : TaskBase(taskName)
+    TaskMoney(const std::string &taskName) : TaskBase(taskName)
     { }
 
     void Randomize() override
     { }
 
-    std::wstring GetDescription() override
+    std::string GetDescription() override
     {
-        return L"Штирлиц подбросил монету 2 раза\n"
+        return "Штирлиц подбросил монету 2 раза\n"
                "Он не любит, когда выпадает менее двух орлов\n"
                "Найдите вероятность того, что Штирлиц веселый";
     }
@@ -22,13 +22,13 @@ public:
         probability = 0.5 * 0.5;
     }
 
-    std::wstring GetAnswer() override
+    std::string GetAnswer() override
     {
-        return std::to_wstring(probability);
+        return std::to_string(probability);
     }
 
 private:
     double probability;
 };
 
-Registrator<TaskMoney> registrator(L"Задача о подбрасывании монетки");
+Registrator<TaskMoney> registrator("Задача о подбрасывании монетки");
