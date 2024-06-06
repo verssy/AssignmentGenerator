@@ -12,6 +12,6 @@ void TaskFactory::Print()
         task->Randomize();
         std::cout << task->GetDescription() << std::endl;
         task->Solve();
-        std::cout << task->GetAnswer() << std::endl;
+        std::cout << "ОТВЕТ = " << task->GetAnswer() << std::endl;
     }
 }
