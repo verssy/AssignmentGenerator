@@ -34,20 +34,16 @@ std::string Format(const std::string &formatStr, Args &&...args)
     std::ostringstream stream;
     std::vector<std::string> arguments = { ToString(std::forward<Args>(args))... };
     size_t argIndex = 0;
+    int lastPos = 0;
+    int pos = 0;
 
-    try {
-        for (size_t i = 0; i < formatStr.length(); i++) {
-            if (formatStr[i] == L'{' && formatStr[i + 1] == L'}') {
-                stream << arguments[argIndex++];
-                i++;
-            } else {
-                stream << formatStr[i];
-            }
-        }
-    } catch (std::out_of_range &error) {
-        std::cerr << "Bad format: Format() doesn't allow any chars but '}' after '{'" << std::endl;
-        return std::string{};
+    while ((pos = formatStr.find("{}", lastPos)) != std::string::npos) {
+        stream << formatStr.substr(lastPos, std::max(0, pos - lastPos));
+        stream << arguments[argIndex++];
+        lastPos = pos + 2;
     }
+
+    stream << formatStr.substr(lastPos);
 
     return stream.str();
 }
