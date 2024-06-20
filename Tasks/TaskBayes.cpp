@@ -1,22 +1,28 @@
+#include <random>
+
+#include "Format.hpp"
 #include "Registrator.hpp"
 #include "TaskBase.hpp"
 #include "TaskFactory.hpp"
 
-#include "Format.hpp"
-
 class TaskBayes : public TaskBase {
 public:
-    TaskBayes(const std::string &taskName) : TaskBase(taskName)
+    TaskBayes(const std::string &taskName)
+        : TaskBase(taskName), distrMachines(1, 3), distrProbs(10, 90)
     { }
+
+    void SetSeed(const int64_t seed) override
+    {
+        gen.seed(seed);
+    }
 
     void Randomize() override
     {
         for (int64_t i = 0; i < 3; i++) {
-            // [0.1; 0.9], step == 0.1
-            probs[i] = (rand() % 9 + 1) / 10.0;
+            probs[i] = distrProbs(gen) / 100.0;
         }
 
-        machinesCount = rand() % 3 + 1;
+        machinesCount = distrMachines(gen);
     }
 
     void Solve() override
@@ -50,6 +56,10 @@ public:
     }
 
 private:
+    std::uniform_int_distribution<int> distrMachines;
+    std::uniform_int_distribution<int> distrProbs;
+    std::mt19937 gen;
+
     int machinesCount;
     double probs[3];
     double answer;

@@ -17,10 +17,12 @@ public:
     }
 
     void Print();
+    void SetSeed(int64_t seed);
 
 private:
     TaskFactory() = default;
     TaskFactory(const TaskFactory &);
 
     std::vector<std::unique_ptr<TaskBase>> tasks;
+    int64_t seed;
 };
