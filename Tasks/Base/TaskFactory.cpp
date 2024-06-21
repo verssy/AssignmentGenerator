@@ -1,4 +1,5 @@
 #include "TaskFactory.hpp"
+#include "Settings.hpp"
 
 TaskFactory &TaskFactory::GetInstance()
 {
@@ -9,15 +10,9 @@ TaskFactory &TaskFactory::GetInstance()
 void TaskFactory::Print()
 {
     for (auto &task : tasks) {
-        task->SetSeed(this->seed);
-        task->Randomize();
+        task->Randomize(Settings::seed);
         std::cout << task->GetDescription() << std::endl;
         task->Solve();
         std::cout << "ОТВЕТ = " << task->GetAnswer() << std::endl;
     }
-}
-
-void TaskFactory::SetSeed(int64_t seed)
-{
-    this->seed = seed;
 }

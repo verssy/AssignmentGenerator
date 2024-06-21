@@ -1,6 +1,7 @@
 set(BASE_TASKS_SOURCES
     Base/TaskBase.cpp
     Base/TaskFactory.cpp
+    Base/Settings.cpp
 )
 
 set(TASKS_SOURCES

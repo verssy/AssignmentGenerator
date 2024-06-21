@@ -2,6 +2,7 @@
 
 #include "Format.hpp"
 #include "Registrator.hpp"
+#include "Settings.hpp"
 #include "TaskBase.hpp"
 #include "TaskFactory.hpp"
 
@@ -11,13 +12,10 @@ public:
         : TaskBase(taskName), distrMachines(1, 3), distrProbs(10, 90)
     { }
 
-    void SetSeed(const int64_t seed) override
+    void Randomize(const int64_t seed) override
     {
         gen.seed(seed);
-    }
 
-    void Randomize() override
-    {
         for (int64_t i = 0; i < 3; i++) {
             probs[i] = distrProbs(gen) / 100.0;
         }

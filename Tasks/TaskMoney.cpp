@@ -7,10 +7,7 @@ public:
     TaskMoney(const std::string &taskName) : TaskBase(taskName)
     { }
 
-    void SetSeed(const int64_t) override
-    { }
-
-    void Randomize() override
+    void Randomize(const int64_t) override
     { }
 
     std::string GetDescription() override

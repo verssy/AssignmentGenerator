@@ -6,8 +6,7 @@ class TaskBase {
 public:
     TaskBase(const std::string &taskName);
 
-    virtual void SetSeed(const int64_t) = 0;
-    virtual void Randomize() = 0;
+    virtual void Randomize(const int64_t seed) = 0;
     virtual std::string GetDescription() = 0;
     virtual void Solve() = 0;
     virtual std::string GetAnswer() = 0;
