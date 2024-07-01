@@ -11,20 +11,15 @@ bool helpRequest = false;
 void ParseSettings(int argc, char *argv[])
 {
     std::vector<std::string_view> args(argv + 1, argv + argc);
-    try {
-        for (int64_t i = 0; i < args.size(); i++) {
-            if (args[i] == "-h" || args[i] == "--help") {
-                helpRequest = true;
-            } else if (args[i] == "--seed" || args[i] == "-s") {
-                seed = std::stoi(args.at(i + 1).data());
-                i++;
-            } else {
-                throw std::runtime_error("Unknown argument");
-            }
+
+    for (int64_t i = 0; i < args.size(); i++) {
+        if (args[i] == "--seed" || args[i] == "-s" && i < args.size() - 1) {
+            seed = std::stoi(args[i + 1].data());
+            i++;
+        } else {
+            helpRequest = true;
+            break;
         }
-    } catch (std::exception &ex) {
-        std::cerr << "ERROR [PARSING]: " << ex.what() << std::endl;
-        helpRequest = true;
     }
 }
 
