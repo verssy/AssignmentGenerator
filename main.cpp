@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <locale>
 #include <string>
@@ -17,5 +18,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    TaskFactory::GetInstance().Print();
+    std::ofstream outFile(Settings::outFilename);
+    auto &out = (outFile.is_open() ? outFile : std::cout);
+    TaskFactory::GetInstance().Print(out);
 }

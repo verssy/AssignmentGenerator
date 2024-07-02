@@ -1,5 +1,8 @@
-#include "TaskFactory.hpp"
+#include <fstream>
+#include <iostream>
+
 #include "Settings.hpp"
+#include "TaskFactory.hpp"
 
 TaskFactory &TaskFactory::GetInstance()
 {
@@ -7,12 +10,12 @@ TaskFactory &TaskFactory::GetInstance()
     return fac;
 }
 
-void TaskFactory::Print()
+void TaskFactory::Print(std::ostream &out)
 {
     for (auto &task : tasks) {
         task->Randomize(Settings::seed);
-        std::cout << task->GetDescription() << std::endl;
+        out << task->GetDescription() << std::endl;
         task->Solve();
-        std::cout << "ОТВЕТ = " << task->GetAnswer() << std::endl;
+        out << "ОТВЕТ = " << task->GetAnswer() << std::endl;
     }
 }

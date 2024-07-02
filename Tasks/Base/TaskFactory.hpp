@@ -16,7 +16,7 @@ public:
         tasks.push_back(std::make_unique<TaskClass>(taskName));
     }
 
-    void Print();
+    void Print(std::ostream &out);
     void SetSeed(int64_t seed);
 
 private:
