@@ -7,8 +7,6 @@
 #include "Settings.hpp"
 #include "TaskFactory.hpp"
 
-using namespace std;
-
 int main(int argc, char *argv[])
 {
     std::setlocale(LC_ALL, "");

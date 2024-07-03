@@ -5,31 +5,31 @@
 #include <string>
 #include <vector>
 
-std::string ToString(const char *arg)
+inline std::string ToString(const char *arg)
 {
     return std::string(arg);
 }
 
 template <size_t ArrSize>
-std::string ToString(char (&arg)[ArrSize])
+inline std::string ToString(char (&arg)[ArrSize])
 {
     return arg;
 }
 
 template <typename T>
-std::string ToString(T &&arg)
+inline std::string ToString(T &&arg)
 {
     return std::to_string(arg);
 }
 
 template <>
-std::string ToString<std::string>(std::string &&arg)
+inline std::string ToString<std::string>(std::string &&arg)
 {
     return arg;
 }
 
 template <typename... Args>
-std::string Format(const std::string &formatStr, Args &&...args)
+inline std::string Format(const std::string &formatStr, Args &&...args)
 {
     std::ostringstream stream;
     std::vector<std::string> arguments = { ToString(std::forward<Args>(args))... };
