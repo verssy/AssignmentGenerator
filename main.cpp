@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "duckx.hpp"
+
 #include "Settings.hpp"
 #include "TaskFactory.hpp"
 
@@ -16,7 +18,8 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    std::ofstream outFile(Settings::outFilename);
-    auto &out = (outFile.is_open() ? outFile : std::cout);
-    TaskFactory::GetInstance().Print(out);
+    duckx::Document doc(Settings::outFilename);
+    doc.open();
+    TaskFactory::GetInstance().Print(doc);
+    doc.save();
 }

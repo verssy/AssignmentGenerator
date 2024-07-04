@@ -4,6 +4,8 @@
 #include <memory>
 #include <vector>
 
+#include "duckx.hpp"
+
 #include "TaskBase.hpp"
 
 class TaskFactory {
@@ -16,7 +18,7 @@ public:
         tasks.push_back(std::make_unique<TaskClass>(taskName));
     }
 
-    void Print(std::ostream &out);
+    void Print(duckx::Document &doc);
     void SetSeed(int64_t seed);
 
 private:

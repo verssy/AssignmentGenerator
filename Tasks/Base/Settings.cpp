@@ -27,6 +27,7 @@ void ParseSettings(int argc, char *argv[])
             i++;
         } else if (args[i] == "--out" || args[i] == "-o" && i < args.size() - 1) {
             outFilename = args[i + 1];
+            outFilename.append(".docx");
             i++;
         } else if (args[i] == "--variants" || args[i] == "-v" && i < args.size() - 1) {
             const auto [parsed, value] = ParseInt(args[i + 1]);

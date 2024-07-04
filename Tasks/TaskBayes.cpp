@@ -6,6 +6,7 @@
 #include "TaskBase.hpp"
 #include "TaskFactory.hpp"
 
+namespace {
 class TaskBayes : public TaskBase {
 public:
     TaskBayes(const std::string &taskName)
@@ -82,3 +83,4 @@ private:
 };
 
 Registrator<TaskBayes> registrator("Задание на использование формулы Байеса");
+}  // namespace

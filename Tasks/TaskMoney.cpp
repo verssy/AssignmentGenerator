@@ -2,6 +2,7 @@
 #include "TaskBase.hpp"
 #include "TaskFactory.hpp"
 
+namespace {
 class TaskMoney : public TaskBase {
 public:
     TaskMoney(const std::string &taskName) : TaskBase(taskName)
@@ -32,3 +33,4 @@ private:
 };
 
 Registrator<TaskMoney> registrator("Задача о подбрасывании монетки");
+}  // namespace

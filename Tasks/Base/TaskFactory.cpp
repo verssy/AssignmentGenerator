@@ -11,17 +11,21 @@ TaskFactory &TaskFactory::GetInstance()
     return fac;
 }
 
-void TaskFactory::Print(std::ostream &out)
+void TaskFactory::Print(duckx::Document &doc)
 {
+    duckx::Paragraph par = doc.paragraphs();
+
     for (int64_t variant = 0; variant < Settings::variants; variant++) {
-        out << "\nВариант №" << variant + 1 << "\n\n";
 
         for (int64_t i = 0; i < tasks.size(); i++) {
-            out << i + 1 << ".\n";
             tasks[i]->Randomize(Settings::seed++);
-            out << tasks[i]->GetDescription() << "\n";
             tasks[i]->Solve();
-            out << "ОТВЕТ = " << tasks[i]->GetAnswer() << std::endl;
+            par.insert_paragraph_after("Ответ: " + tasks[i]->GetAnswer());
+            par.insert_paragraph_after(tasks[i]->GetDescription());
+            par.insert_paragraph_after(Format("Задание {}.", tasks.size() - i));
         }
+
+        par.insert_paragraph_after(Format("Вариант №{}", Settings::variants - variant));
+        par.insert_paragraph_after("");
     }
 }
