@@ -4,7 +4,7 @@
 #include <memory>
 #include <vector>
 
-#include "duckx.hpp"
+#include "minidocx.hpp"
 
 #include "TaskBase.hpp"
 
@@ -18,7 +18,7 @@ public:
         tasks.push_back(std::make_unique<TaskClass>(taskName));
     }
 
-    void Print(duckx::Document &doc);
+    void Print(docx::Document &doc);
     void SetSeed(int64_t seed);
 
 private:

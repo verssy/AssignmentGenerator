@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "duckx.hpp"
+#include "minidocx.hpp"
 
 #include "Settings.hpp"
 #include "TaskFactory.hpp"
@@ -18,8 +18,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    duckx::Document doc(Settings::outFilename);
-    doc.open();
+    docx::Document doc(Settings::outFilename);
     TaskFactory::GetInstance().Print(doc);
-    doc.save();
+    doc.Save();
 }
